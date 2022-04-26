@@ -12,8 +12,12 @@ public class TikTokToe {
         String secondPlayer = scanner.nextLine();
         char currentPlayer = 'X';
         while (true) {
-            System.out.print("Input number 1 -9: ");
+            System.out.print("Input number 1-9: ");
             int n = scanner.nextInt();
+            if (n < 1 || n > 9) {
+                System.out.println("Input 1-9!");
+                continue;
+            }
             if (gameBoard[getI(n)][getJ(n)] != 0) {
                 System.out.println("Input other num!");
                 continue;
@@ -22,10 +26,7 @@ public class TikTokToe {
             printGameBoard(gameBoard);
 
             if (checkWin(gameBoard, currentPlayer)) {
-                System.out.println(firstPlayer + " You Win! ");
-                break;
-            } else if (checkWin(gameBoard, currentPlayer)) {
-                System.out.println(secondPlayer + " You Win!");
+                System.out.println((currentPlayer == 'X') ? firstPlayer : secondPlayer + " You Win! ");
                 break;
             }
 
@@ -33,12 +34,8 @@ public class TikTokToe {
                 System.out.println("It is DRAW!");
                 break;
             }
-//            if (checkMoreThen(currentPlayer)) {
-//                System.out.println("Input 1-9!");
-//                break;
-//            }
-            currentPlayer = (currentPlayer == 'X') ? '0' : 'X';
 
+            currentPlayer = (currentPlayer == 'X') ? '0' : 'X';
         }
     }
 
@@ -76,7 +73,9 @@ public class TikTokToe {
             boolean isWin = true;
             for (int j = 0; j < WIN_LIST[i].length; j++) {
                 int checkingNumber = WIN_LIST[i][j];
-                if (gameBoard[getI(checkingNumber)][getJ(checkingNumber)] != player) {
+                int I = getI(checkingNumber);
+                int J = getJ(checkingNumber);
+                if (gameBoard[I][J] != player) {
                     isWin = false;
                     break;
                 }
