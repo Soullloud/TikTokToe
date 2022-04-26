@@ -73,9 +73,9 @@ public class TikTokToe {
             boolean isWin = true;
             for (int j = 0; j < WIN_LIST[i].length; j++) {
                 int checkingNumber = WIN_LIST[i][j];
-                int I = getI(checkingNumber);
-                int J = getJ(checkingNumber);
-                if (gameBoard[I][J] != player) {
+                int firstCheck = getI(checkingNumber);
+                int secondCheck = getJ(checkingNumber);
+                if (gameBoard[firstCheck][secondCheck] != player) {
                     isWin = false;
                     break;
                 }
